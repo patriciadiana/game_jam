@@ -4,7 +4,9 @@
 TagManager:
   serializedVersion: 3
   tags:
+  - Projectile
   - Pushable
+
   layers:
   - Default
   - TransparentFX
@@ -12,6 +14,9 @@ TagManager:
   - 
   - Water
   - UI
+  - Ground
+  - Player
+  - Arm
   - 
   - 
   - 
@@ -33,11 +38,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+
   m_SortingLayers:
   - name: Default
     uniqueID: 0
@@ -45,17 +46,18 @@ TagManager:
   - name: Ground
     uniqueID: 698594201
     locked: 0
+  - name: WalkBehind
+    uniqueID: 571491137
+    locked: 0
   - name: WalkInFront
     uniqueID: 3103848483
     locked: 0
   - name: Player
-    uniqueID: 920491287
+    uniqueID: 3061308789
     locked: 0
   - name: Colission
     uniqueID: 1230972609
     locked: 0
-  - name: WalkBehind
-    uniqueID: 571491137
-    locked: 0
+
   m_RenderingLayers:
   - Default
