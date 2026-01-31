@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Projectile
   - Pushable
+  - Wall
+  - Key
+  - Seif
   - Mask
   layers:
   - Default
