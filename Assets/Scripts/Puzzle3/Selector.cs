@@ -48,34 +48,42 @@ public class Selector : MonoBehaviour
             {
                 current_index = 0;
             }
+            option.text = selector[current_index].ToString();
         }
-        option.text = selector[current_index].ToString();
     }
+
     public char ReturnSelection()
     {
-        return selector[current_index];
+        if (current_index >= 0)
+            return selector[current_index];
+        return ' ';
     }
     public void DownDisplay()
     {
-        Debug.Log("Down");
+
         if (selector.Count != 0)
         {
-            if (current_index - 1 > 0)
+            if (current_index - 1 >= 0)
             {
                 current_index -= 1;
 
             }
             else
             {
-                current_index = selector.Count;
+                current_index = selector.Count - 1;
             }
+            option.text = selector[current_index].ToString();
+            Debug.Log("down: " + current_index);
         }
-        option.text = selector[current_index].ToString();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        option.text = selector[current_index].ToString();
+        if (current_index >= 0 && current_index < selector.Count)
+        {
+            option.text = selector[current_index].ToString();
+        }
     }
 }

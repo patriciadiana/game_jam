@@ -10,10 +10,10 @@ public class StartMonologue : MonoBehaviour
     public GameObject dialoguePanel;
     public TextMeshProUGUI dialogueText, nameText;
     public Image portraitImage;
-    
+
     [Header("Start Settings")]
-    public bool startDialogueOnStart = true; 
-    public float startDelay = 1f; 
+    public bool startDialogueOnStart = true;
+    public float startDelay = 1f;
 
     private int dialogueIndex;
     private bool isTyping, isDialogueActive;
@@ -41,7 +41,7 @@ public class StartMonologue : MonoBehaviour
     {
         if (dialogueData == null)
             return;
-        if(isDialogueActive)
+        if (isDialogueActive)
         {
             NextLine();
         }
@@ -66,15 +66,15 @@ public class StartMonologue : MonoBehaviour
 
     void NextLine()
     {
-        if(isTyping)
+        if (isTyping)
         {
             StopAllCoroutines();
             dialogueText.SetText(dialogueData.dialogueLines[dialogueIndex]);
             isTyping = false;
         }
-        else if(++dialogueIndex < dialogueData.dialogueLines.Length) 
+        else if (++dialogueIndex < dialogueData.dialogueLines.Length)
         {
-             StartCoroutine(TypeLine());
+            StartCoroutine(TypeLine());
         }
         else
         {
@@ -86,22 +86,22 @@ public class StartMonologue : MonoBehaviour
     {
         isTyping = true;
         dialogueText.SetText("");
-        
-        foreach(char letter in dialogueData.dialogueLines[dialogueIndex])
+
+        foreach (char letter in dialogueData.dialogueLines[dialogueIndex])
         {
             dialogueText.text += letter;
             yield return new WaitForSeconds(dialogueData.typingSpeed);
         }
 
-        isTyping=false;
+        isTyping = false;
 
-        if(dialogueData.autoProgressLines.Length > dialogueIndex && dialogueData.autoProgressLines[dialogueIndex])
+        if (dialogueData.autoProgressLines.Length > dialogueIndex && dialogueData.autoProgressLines[dialogueIndex])
         {
             yield return new WaitForSeconds(dialogueData.autoProgressDelay);
             NextLine();
         }
     }
-    
+
     public void EndDialogue()
     {
         StopAllCoroutines();
