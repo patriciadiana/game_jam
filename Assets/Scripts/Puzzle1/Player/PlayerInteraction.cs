@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -13,11 +14,14 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Update()
     {
-        CheckProximity(); 
+        CheckProximity();
 
         if (isNearMask && Input.GetKeyDown(interactKey))
         {
             Debug.Log("Bravo frate treci in etapa urmatoare");
+
+            int currentIndex = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(currentIndex + 1);
         }
     }
 

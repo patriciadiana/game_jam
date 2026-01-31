@@ -1,8 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameOverScreen : MonoBehaviour
+public class GameOverScreen : SingletonPersistent<GameOverScreen>
 {
+    private void Start()
+    {
+        gameObject.SetActive(false);
+    }
     public void Setup()
     {
         Time.timeScale = 0f;
@@ -12,7 +16,8 @@ public class GameOverScreen : MonoBehaviour
     public void RestartButton()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Puzzle1");
-    }
 
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.buildIndex);
+    }
 }
