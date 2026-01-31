@@ -18,6 +18,7 @@ public class ReturnableProjectile2D : MonoBehaviour
     private Transform holdPoint;
     private bool isHeld = true;
     private bool isReturning = false;
+    private SpriteRenderer spriteRenderer;
 
     private Action onReturned;
 
@@ -25,6 +26,7 @@ public class ReturnableProjectile2D : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     void FixedUpdate()
@@ -66,6 +68,9 @@ public class ReturnableProjectile2D : MonoBehaviour
         rb.isKinematic = true;
         rb.gravityScale = 0f;
 
+        if (spriteRenderer != null)
+            spriteRenderer.enabled = false;
+
         transform.SetParent(holdPoint);
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
@@ -76,6 +81,9 @@ public class ReturnableProjectile2D : MonoBehaviour
         if (!isHeld || isReturning) return;
 
         transform.SetParent(null);
+
+        if (spriteRenderer != null)
+            spriteRenderer.enabled = true;
 
         rb.isKinematic = false;
         rb.gravityScale = GravityScale;
@@ -108,6 +116,7 @@ public class ReturnableProjectile2D : MonoBehaviour
 
         col.enabled = false;
 
+
         isReturning = true;
     }
 
@@ -116,6 +125,9 @@ public class ReturnableProjectile2D : MonoBehaviour
         isReturning = false;
 
         AttachToHoldPoint();
+
+        if (spriteRenderer != null)
+            spriteRenderer.enabled = false;
 
         onReturned?.Invoke();
         onReturned = null;
