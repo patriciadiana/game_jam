@@ -26,16 +26,6 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("isWalking", isWalking);
         animator.SetFloat("InputX", input.x);
         animator.SetFloat("InputY", input.y);
-
-        if (isWalking)
-        {
-            animator.SetFloat("LastInputX", input.x);
-            animator.SetFloat("LastInputY", input.y);
-        }
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("aici");
     }
 
     private void FixedUpdate()
