@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
+    [Header("Vision Cone")]
+    public VisionCone visionCone;
     enum EnemyState
     {
         Patrol,
@@ -40,6 +42,14 @@ public class EnemyAI : MonoBehaviour
     }
     private void Update()
     {
+        if (visionCone)
+        {
+            Vector2 facing = rb.linearVelocity.normalized;
+            if (facing == Vector2.zero)
+                facing = moveDirection;
+            visionCone.facingDirection = facing;
+        }
+
         switch (currentState)
         {
             case EnemyState.Patrol:

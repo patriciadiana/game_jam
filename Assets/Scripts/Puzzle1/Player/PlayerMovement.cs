@@ -2,13 +2,14 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 5f;
+    [SerializeField] private int speed = 5;
+
     private Rigidbody2D rb;
     private Vector2 input;
 
     private Animator animator;
 
-    private void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -32,9 +33,14 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat("LastInputY", input.y);
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("aici");
+    }
 
     private void FixedUpdate()
     {
-        rb.linearVelocity = input * speed;
+        rb.MovePosition(rb.position + input * speed * Time.fixedDeltaTime);
     }
+
 }

@@ -103,7 +103,7 @@ public class ReturnableProjectile2D : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
         rb.angularVelocity = 0f;
 
-        rb.isKinematic = true;
+        rb.bodyType = RigidbodyType2D.Kinematic;
         rb.gravityScale = 0f;
 
         col.enabled = false;
