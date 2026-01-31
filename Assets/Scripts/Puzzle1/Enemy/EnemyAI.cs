@@ -5,16 +5,24 @@ public class EnemyAI : MonoBehaviour
     [Header("Vision Cone")]
     public Transform visionCone;
     public Color patrolColor = new Color(1f, 1f, 1f, 0.5f);
-    public Color alertColor = new Color(1f, 0f, 0f, 0.6f);   
+    public Color alertColor = new Color(1f, 0f, 0f, 0.6f);
 
     private SpriteRenderer visionConeRenderer;
+
     enum EnemyState
     {
         Patrol,
         Chase
     }
 
+    enum PatrolAxis
+    {
+        Horizontal,
+        Vertical
+    }
+
     private EnemyState currentState = EnemyState.Patrol;
+    private PatrolAxis nextAxis = PatrolAxis.Horizontal;
 
     [Header("Movement")]
     public float moveSpeed = 3f;
@@ -74,25 +82,6 @@ public class EnemyAI : MonoBehaviour
         UpdateAnimator();
     }
 
-    void UpdateAnimator()
-    {
-        if (!animator) return;
-
-        Vector2 velocity = rb.linearVelocity;
-
-        bool isWalking = velocity.sqrMagnitude > 0.01f;
-
-        animator.SetBool("isWalking", isWalking);
-
-        if (isWalking)
-        {
-            Vector2 dir = velocity.normalized;
-            animator.SetFloat("InputX", dir.x);
-            animator.SetFloat("InputY", dir.y);
-        }
-    }
-
-
     private void FixedUpdate()
     {
         switch (currentState)
@@ -109,18 +98,17 @@ public class EnemyAI : MonoBehaviour
 
     void ChooseNewPatrolDirection()
     {
-        Vector2[] eightDirections = {
-            Vector2.up,
-            (Vector2.up + Vector2.right).normalized,
-            Vector2.right,
-            (Vector2.down + Vector2.right).normalized,
-            Vector2.down,
-            (Vector2.down + Vector2.left).normalized,
-            Vector2.left,
-            (Vector2.up + Vector2.left).normalized
-        };
+        if (nextAxis == PatrolAxis.Horizontal)
+        {
+            moveDirection = Random.value > 0.5f ? Vector2.right : Vector2.left;
+            nextAxis = PatrolAxis.Vertical;
+        }
+        else
+        {
+            moveDirection = Random.value > 0.5f ? Vector2.up : Vector2.down;
+            nextAxis = PatrolAxis.Horizontal;
+        }
 
-        moveDirection = eightDirections[Random.Range(0, eightDirections.Length)];
         patrolTimer = patrolChangeTime;
     }
 
@@ -211,8 +199,9 @@ public class EnemyAI : MonoBehaviour
             if (visionConeRenderer)
                 visionConeRenderer.color = alertColor;
 
-            if (FindFirstObjectByType<GameManager>() != null)
-                FindFirstObjectByType<GameManager>().GameLost();
+            GameManager gm = FindFirstObjectByType<GameManager>();
+            if (gm != null)
+                gm.GameLost();
         }
     }
 
@@ -230,7 +219,6 @@ public class EnemyAI : MonoBehaviour
         if (!visionCone) return;
 
         Vector2 facingDirection = rb.linearVelocity.normalized;
-
         if (facingDirection == Vector2.zero)
             facingDirection = moveDirection;
 
@@ -239,5 +227,32 @@ public class EnemyAI : MonoBehaviour
 
         float angle = Mathf.Atan2(facingDirection.y, facingDirection.x) * Mathf.Rad2Deg;
         visionCone.rotation = Quaternion.Euler(0f, 0f, angle);
+    }
+
+    void UpdateAnimator()
+    {
+        if (!animator) return;
+
+        Vector2 velocity = rb.linearVelocity;
+        bool isWalking = velocity.sqrMagnitude > 0.01f;
+
+        animator.SetBool("isWalking", isWalking);
+
+        if (isWalking)
+        {
+            Vector2 dir = velocity.normalized;
+            animator.SetFloat("InputX", dir.x);
+            animator.SetFloat("InputY", dir.y);
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+
+        Vector2 center = Application.isPlaying ? startPosition : (Vector2)transform.position;
+        Vector3 size = new Vector3(patrolWidth, patrolHeight, 0f);
+
+        Gizmos.DrawWireCube(center, size);
     }
 }

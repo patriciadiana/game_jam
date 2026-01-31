@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : SingletonPersistent<GameManager>
 {
     public GameOverScreen gameOverScreen;
     public bool isGameOver { get; private set; } = false;
@@ -12,7 +12,28 @@ public class GameManager : MonoBehaviour
         isGameOver = true;
         Debug.Log("Game Over!");
 
-        if (gameOverScreen != null)
-            gameOverScreen.Setup();
+        // Find GameObject by tag
+        GameObject taggedObject = GameObject.FindGameObjectWithTag("GameOverScreen");
+
+        if (taggedObject != null)
+        {
+            Debug.Log($"Found GameObject with tag 'GameOverScreen': {taggedObject.name}");
+
+            // Get the GameOverScreen component from it
+            GameOverScreen screen = taggedObject.GetComponent<GameOverScreen>();
+
+            if (screen != null)
+            {
+                screen.Setup();
+            }
+            else
+            {
+                Debug.LogError($"GameObject '{taggedObject.name}' has tag 'GameOverScreen' but no GameOverScreen script component!");
+            }
+        }
+        else
+        {
+            Debug.LogError("No GameObject found with tag 'GameOverScreen'!");
+        }
     }
 }
