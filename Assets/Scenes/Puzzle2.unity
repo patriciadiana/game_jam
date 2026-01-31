@@ -199,7 +199,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: -1233658507
+  m_SortingLayerID: -475729983
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -831,8 +831,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: -1233658507
-  m_SortingLayer: 0
+  m_SortingLayerID: 617710845
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
@@ -866,6 +866,9 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 0
+  minThrowSpeed: 6
+  maxThrowSpeed: 18
+  chargeSpeed: 12
 --- !u!1 &567119885
 GameObject:
   m_ObjectHideFlags: 0
@@ -878,7 +881,7 @@ GameObject:
   - component: {fileID: 567119889}
   - component: {fileID: 567119888}
   - component: {fileID: 567119887}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FloatingPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1042,7 +1045,7 @@ GameObject:
   m_Component:
   - component: {fileID: 574411438}
   - component: {fileID: 574411437}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1094,7 +1097,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: -1233658507
+  m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
@@ -10129,7 +10132,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: -1233658507
+  m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0

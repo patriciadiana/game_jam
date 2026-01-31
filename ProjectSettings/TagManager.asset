@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Projectile
   - Pushable
-
   layers:
   - Default
   - TransparentFX
@@ -38,26 +37,20 @@ TagManager:
   - 
   - 
   - 
-
+  - 
+  - 
   m_SortingLayers:
   - name: Default
     uniqueID: 0
     locked: 0
   - name: Ground
-    uniqueID: 698594201
-    locked: 0
-  - name: WalkBehind
-    uniqueID: 571491137
-    locked: 0
-  - name: WalkInFront
-    uniqueID: 3103848483
+    uniqueID: 1080636843
     locked: 0
   - name: Player
-    uniqueID: 3061308789
+    uniqueID: 617710845
     locked: 0
-  - name: Colission
-    uniqueID: 1230972609
+  - name: Collision
+    uniqueID: 67543429
     locked: 0
-
   m_RenderingLayers:
   - Default
