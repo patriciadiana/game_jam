@@ -17,7 +17,10 @@ public class PlayerMovement2D : MonoBehaviour
 
     [Header("Facing")]
     public bool startFacingRight = true;
-    public float flipDeadzone = 0.01f; // prevents jitter when input is ~0
+    public float flipDeadzone = 0.01f;
+
+    [Header("Animation")]
+    public Animator animator; // drag player animator here (or leave empty)
 
     private Rigidbody2D rb;
     private float moveInput;
@@ -29,40 +32,38 @@ public class PlayerMovement2D : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        if (!animator) animator = GetComponentInChildren<Animator>();
 
-        // store original scale so we don't mess up your sizing
         baseScaleX = Mathf.Abs(transform.localScale.x);
         isFacingRight = startFacingRight;
 
-        ApplyFacing();
+        //ApplyFacing();
+        UpdateAnimatorFacing();
     }
 
     void Update()
     {
-        // Horizontal movement (A/D or arrows)
         moveInput = Input.GetAxisRaw("Horizontal");
 
-        // Flip based on input direction
+        // Flip logic
         if (moveInput > flipDeadzone && !isFacingRight)
         {
             isFacingRight = true;
-            ApplyFacing();
+            //ApplyFacing();
+            UpdateAnimatorFacing();
         }
         else if (moveInput < -flipDeadzone && isFacingRight)
         {
             isFacingRight = false;
-            ApplyFacing();
+            //ApplyFacing();
+            UpdateAnimatorFacing();
         }
 
         // Ground check
         if (groundCheck != null)
-            isGrounded = Physics2D.OverlapCircle(
-                groundCheck.position,
-                groundCheckRadius,
-                groundLayer
-            );
+            isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-        // Jump start
+        // Jump
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
@@ -72,10 +73,15 @@ public class PlayerMovement2D : MonoBehaviour
         // Jump cut
         if (Input.GetButtonUp("Jump") && rb.linearVelocity.y > 0)
         {
-            rb.linearVelocity = new Vector2(
-                rb.linearVelocity.x,
-                rb.linearVelocity.y * jumpCutMultiplier
-            );
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * jumpCutMultiplier);
+        }
+
+        // Animator params
+        if (animator)
+        {
+            float speedAbs = Mathf.Abs(moveInput);
+            animator.SetFloat("Speed", speedAbs);
+            animator.SetBool("FacingRight", isFacingRight);
         }
     }
 
@@ -84,11 +90,10 @@ public class PlayerMovement2D : MonoBehaviour
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
     }
 
-    private void ApplyFacing()
+    private void UpdateAnimatorFacing()
     {
-        Vector3 s = transform.localScale;
-        s.x = baseScaleX * (isFacingRight ? 1f : -1f);
-        transform.localScale = s;
+        if (!animator) return;
+        animator.SetBool("FacingRight", isFacingRight);
     }
 
     void OnDrawGizmosSelected()

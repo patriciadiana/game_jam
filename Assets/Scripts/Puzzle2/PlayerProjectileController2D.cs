@@ -23,6 +23,14 @@ public class PlayerProjectileController2D : MonoBehaviour
     private float currentThrowSpeed;
     private bool isCharging;
     private ArmDistraction2D armDistraction;
+    private Animator animator;
+
+    [Header("Hold Points")]
+    public Transform holdPointRight;
+    public Transform holdPointLeft;
+
+    private bool facingRight = true;
+
 
     void Awake()
     {
@@ -40,12 +48,37 @@ public class PlayerProjectileController2D : MonoBehaviour
             projectile.AttachToHoldPoint();
 
             armDistraction = projectile.GetComponent<ArmDistraction2D>();
+            
         }
+        if (projectile != null)
+        {
+            facingRight = true;
+            SetHoldPointForFacing();
+        }
+        animator = GetComponentInChildren<Animator>();
+
+        if (animator) animator.SetBool("HasArm", true);
     }
 
     void Update()
     {
         if (projectile == null || holdPoint == null) return;
+
+        float move = Input.GetAxisRaw("Horizontal");
+
+        if (move > 0.01f && !facingRight)
+        {
+            facingRight = true;
+
+            // only switch hold point if arm is currently in hand
+            if (canShoot) SetHoldPointForFacing();
+        }
+        else if (move < -0.01f && facingRight)
+        {
+            facingRight = false;
+
+            if (canShoot) SetHoldPointForFacing();
+        }
 
         if (canShoot && Input.GetMouseButton(1))
         {
@@ -77,6 +110,7 @@ public class PlayerProjectileController2D : MonoBehaviour
                 armDistraction.ResetForNewThrow();
 
             projectile.Shoot(dir * currentThrowSpeed);
+            if (animator) animator.SetBool("HasArm", false);
 
             isCharging = false;
             currentThrowSpeed = 0f;
@@ -89,6 +123,17 @@ public class PlayerProjectileController2D : MonoBehaviour
             projectile.BeginReturn(OnProjectileReturned);
         }
     }
+    private void SetHoldPointForFacing()
+    {
+        if (projectile == null) return;
+
+        holdPoint = facingRight ? holdPointRight : holdPointLeft;
+
+        projectile.SetHoldPoint(holdPoint);
+
+        // Only snap it to hand if it is currently held (and not mid-air)
+        projectile.AttachToHoldPoint();
+    }
 
     private void OnProjectileReturned()
     {
@@ -96,6 +141,7 @@ public class PlayerProjectileController2D : MonoBehaviour
 
         if (armDistraction != null)
             armDistraction.ResetOnReturn();
+        if (animator) animator.SetBool("HasArm", true);
     }
 
     private Vector2 GetAimDirection()
