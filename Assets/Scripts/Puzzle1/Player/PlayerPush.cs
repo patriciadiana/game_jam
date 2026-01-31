@@ -9,11 +9,10 @@ public class PlayerPush : MonoBehaviour
         if (collision.gameObject.CompareTag("Pushable"))
         {
             Rigidbody2D pushableRb = collision.gameObject.GetComponent<Rigidbody2D>();
-            if (pushableRb != null && pushableRb.bodyType == RigidbodyType2D.Kinematic)
+            if (pushableRb != null)
             {
                 Vector2 pushDir = collision.contacts[0].normal * -1;
-
-                pushableRb.MovePosition(pushableRb.position + pushDir * pushForce * Time.fixedDeltaTime);
+                pushableRb.AddForce(pushDir * pushForce, ForceMode2D.Force);
             }
         }
     }
