@@ -14018,6 +14018,10 @@ PrefabInstance:
       propertyPath: lineRenderer
       value: 
       objectReference: {fileID: 1180450682}
+    - target: {fileID: 5419603507838866471, guid: 5ae8b0e6046cc664495f3e74ed129236, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.26
+      objectReference: {fileID: 0}
     - target: {fileID: 6029389503104444542, guid: 5ae8b0e6046cc664495f3e74ed129236, type: 3}
       propertyPath: m_Name
       value: Player

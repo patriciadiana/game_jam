@@ -249,6 +249,8 @@ public class EnemyPatrolChaseDistract2D : MonoBehaviour
         if (collision.collider.CompareTag("Player"))
         {
             collision.collider.gameObject.SetActive(false); // “disappear”
+
+            Debug.Log("Am murit");
         }
     }
 
