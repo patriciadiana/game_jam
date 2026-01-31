@@ -8,6 +8,7 @@ public class Spikes : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.SetActive(false);
+            Debug.Log("Am murit");
         }
     }
 }
