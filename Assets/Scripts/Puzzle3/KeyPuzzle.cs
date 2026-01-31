@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection.Emit;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -51,6 +52,8 @@ public class KeyPuzzle : MonoBehaviour
             get_key = true;
             seif_close_up_panel.SetActive(false);
             seif.GetComponent<Collider2D>().enabled = false;
+            string[] text = { "I heard a door opening..." };
+            this.GetComponent<Dialogue>().StartDialoguString(text);
         }
 
     }
@@ -70,6 +73,20 @@ public class KeyPuzzle : MonoBehaviour
                 {
 
                     seif_close_up_panel.SetActive(false);
+                }
+            }
+        }
+        else
+        {
+            if (collision.gameObject.CompareTag("Clues"))
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    Debug.Log("Here some clues");
+
+                    this.GetComponent<Dialogue>().StartDialoguString(collision.gameObject.GetComponent<Clue>().getText());
+
+
                 }
             }
         }

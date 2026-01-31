@@ -10,6 +10,7 @@ TagManager:
   - Key
   - Seif
   - Mask
+  - Clues
   layers:
   - Default
   - TransparentFX
