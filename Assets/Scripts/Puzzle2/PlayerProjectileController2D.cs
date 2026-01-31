@@ -13,8 +13,15 @@ public class PlayerProjectileController2D : MonoBehaviour
     public float timeStep = 0.05f;
     public LayerMask collisionMask;
 
+    [Header("Charge Throw")]
+    public float minThrowSpeed = 6f;
+    public float maxThrowSpeed = 18f;
+    public float chargeSpeed = 12f;
+
     private Camera cam;
     private bool canShoot = true;
+    private float currentThrowSpeed;
+    private bool isCharging;
 
     void Awake()
     {
@@ -39,7 +46,7 @@ public class PlayerProjectileController2D : MonoBehaviour
 
         if (canShoot && Input.GetMouseButton(1))
         {
-            ShowTrajectory();
+            ShowTrajectory(currentThrowSpeed > 0 ? currentThrowSpeed : minThrowSpeed);
         }
         else
         {
@@ -48,9 +55,23 @@ public class PlayerProjectileController2D : MonoBehaviour
 
         if (canShoot && Input.GetMouseButtonDown(0))
         {
-            Vector2 dir = GetAimDirection();
-            projectile.Shoot(dir * throwSpeed);
+            isCharging = true;
+            currentThrowSpeed = minThrowSpeed;
+        }
 
+        if (canShoot && isCharging && Input.GetMouseButton(0))
+        {
+            currentThrowSpeed += chargeSpeed * Time.deltaTime;
+            currentThrowSpeed = Mathf.Clamp(currentThrowSpeed, minThrowSpeed, maxThrowSpeed);
+        }
+
+        if (canShoot && isCharging && Input.GetMouseButtonUp(0))
+        {
+            Vector2 dir = GetAimDirection();
+            projectile.Shoot(dir * currentThrowSpeed);
+
+            isCharging = false;
+            currentThrowSpeed = 0f;
             canShoot = false;
             HideTrajectory();
         }
@@ -80,7 +101,7 @@ public class PlayerProjectileController2D : MonoBehaviour
         return dir;
     }
 
-    private void ShowTrajectory()
+    private void ShowTrajectory(float speed)
     {
         if (lineRenderer == null) return;
 
@@ -88,7 +109,7 @@ public class PlayerProjectileController2D : MonoBehaviour
         lineRenderer.positionCount = trajectoryPoints;
 
         Vector2 startPos = holdPoint.position;
-        Vector2 startVel = GetAimDirection() * throwSpeed;
+        Vector2 startVel = GetAimDirection() * speed;
         Vector2 gravity = Physics2D.gravity * projectile.GravityScale;
 
         Vector2 prevPos = startPos;
