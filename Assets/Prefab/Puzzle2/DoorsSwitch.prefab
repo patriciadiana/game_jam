@@ -80,11 +80,11 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 617710845
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 6661247427568572811, guid: 1ad2d7aab11fd8e4e9a741dd52eb863b, type: 3}
+  m_Sprite: {fileID: -4299158990828404250, guid: 5c01b985743a1284aa85d92f9775e1e4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -128,17 +128,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.008939743, y: 0.12007126}
+  m_Offset: {x: 0.008184433, y: 0.095335215}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 0.8125}
+    oldSize: {x: 1, y: 0.75}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.51062393, y: 0.30472523}
+  m_Size: {x: 0.7427635, y: 0.4303081}
   m_EdgeRadius: 0
 --- !u!50 &5436059033373829325
 Rigidbody2D:
@@ -180,5 +180,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PreasurePlatform
   doorToDeactivate: {fileID: 0}
-  unpressedSprite: {fileID: 6661247427568572811, guid: 1ad2d7aab11fd8e4e9a741dd52eb863b, type: 3}
-  pressedSprite: {fileID: -8649401730798036767, guid: 68103a44d45e9864e99e8ad5f3f617b6, type: 3}
+  unpressedSprite: {fileID: -4299158990828404250, guid: 5c01b985743a1284aa85d92f9775e1e4, type: 3}
+  pressedSprite: {fileID: 2534289804336964301, guid: 5281ae4581ce3314284f36bc5248c2f0, type: 3}

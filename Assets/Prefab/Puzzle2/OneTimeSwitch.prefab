@@ -80,11 +80,11 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1080636843
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -1701023973798043480, guid: d44340eaebfb5044ba42e1b2bd584a28, type: 3}
+  m_Sprite: {fileID: -2641768229395404821, guid: 4ecc0d55ffa57e5458978765aaada882, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -132,7 +132,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.8125, y: 1}
+    oldSize: {x: 0.6875, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SwitchButton2D
   platformToActivate: {fileID: 0}
   onlyOnce: 1
-  switchedSprite: {fileID: -3816493766761977750, guid: 5efc9e96ee33c10438a7a5a359a6ba70, type: 3}
+  switchedSprite: {fileID: -5397647006356132591, guid: 34617e4047ae28943a1c8c71f5b98ad8, type: 3}
 --- !u!50 &2172935412687402914
 Rigidbody2D:
   serializedVersion: 5

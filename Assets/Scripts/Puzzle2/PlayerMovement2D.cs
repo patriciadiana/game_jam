@@ -8,8 +8,6 @@ public class PlayerMovement2D : MonoBehaviour
 
     [Header("Jump")]
     public float jumpForce = 12f;
-
-    // How much we reduce jump height when releasing early
     public float jumpCutMultiplier = 0.5f;
 
     [Header("Ground Check")]
@@ -17,19 +15,44 @@ public class PlayerMovement2D : MonoBehaviour
     public float groundCheckRadius = 0.15f;
     public LayerMask groundLayer;
 
+    [Header("Facing")]
+    public bool startFacingRight = true;
+    public float flipDeadzone = 0.01f; // prevents jitter when input is ~0
+
     private Rigidbody2D rb;
     private float moveInput;
     private bool isGrounded;
 
+    private bool isFacingRight;
+    private float baseScaleX;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        // store original scale so we don't mess up your sizing
+        baseScaleX = Mathf.Abs(transform.localScale.x);
+        isFacingRight = startFacingRight;
+
+        ApplyFacing();
     }
 
     void Update()
     {
         // Horizontal movement (A/D or arrows)
         moveInput = Input.GetAxisRaw("Horizontal");
+
+        // Flip based on input direction
+        if (moveInput > flipDeadzone && !isFacingRight)
+        {
+            isFacingRight = true;
+            ApplyFacing();
+        }
+        else if (moveInput < -flipDeadzone && isFacingRight)
+        {
+            isFacingRight = false;
+            ApplyFacing();
+        }
 
         // Ground check
         if (groundCheck != null)
@@ -39,14 +62,14 @@ public class PlayerMovement2D : MonoBehaviour
                 groundLayer
             );
 
-        // ? Jump start (Space pressed)
+        // Jump start
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
 
-        // ? Jump cut (Space released early)
+        // Jump cut
         if (Input.GetButtonUp("Jump") && rb.linearVelocity.y > 0)
         {
             rb.linearVelocity = new Vector2(
@@ -58,11 +81,16 @@ public class PlayerMovement2D : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Apply horizontal speed
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
     }
 
-    // Optional: Show ground check circle in Scene view
+    private void ApplyFacing()
+    {
+        Vector3 s = transform.localScale;
+        s.x = baseScaleX * (isFacingRight ? 1f : -1f);
+        transform.localScale = s;
+    }
+
     void OnDrawGizmosSelected()
     {
         if (groundCheck == null) return;
