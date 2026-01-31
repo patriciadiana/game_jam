@@ -1,0 +1,82 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+
+public enum SoundType
+{
+    STEPS
+}
+
+public enum MusicType
+{
+    BACKGROUNDMUSIC
+}
+
+[RequireComponent(typeof(AudioSource))]
+public class SoundManager : Singleton<SoundManager>
+{
+    private AudioClip pausedClip;
+    private float pausedTime;
+
+    [Header("---------- Audio Source ----------")]
+    [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private AudioSource musicSource;
+
+    [SerializeField] private AudioClip[] soundList;
+    [SerializeField] private AudioClip[] musicList;
+    private void Start()
+    {
+        PlayMusic(MusicType.BACKGROUNDMUSIC);
+    }
+
+    public static void PlaySound(SoundType sound)
+    {
+        if (Instance.soundList.Length > (int)sound)
+        {
+            Instance.sfxSource.PlayOneShot(
+                Instance.soundList[(int)sound]
+            );
+        }
+        else
+        {
+            Debug.LogWarning("Sound clip not found for: " + sound);
+        }
+    }
+
+    public static void PlayMusic(MusicType music)
+    {
+        if (Instance.musicList.Length > (int)music)
+        {
+            Instance.musicSource.clip = Instance.musicList[(int)music];
+            Instance.musicSource.volume = 1f;
+            Instance.musicSource.loop = true;
+            Instance.musicSource.Play();
+        }
+        else
+        {
+            Debug.LogWarning("Music clip not found for: " + music);
+        }
+    }
+
+    public void PauseMusic()
+    {
+        if (musicSource.isPlaying)
+        {
+            pausedClip = musicSource.clip;      
+            pausedTime = musicSource.time;      
+            musicSource.Pause();
+        }
+    }
+
+    public void ResumeMusic()
+    {
+        if (pausedClip != null)
+        {
+            musicSource.clip = pausedClip;      
+            musicSource.time = pausedTime;      
+            musicSource.Play();
+            pausedClip = null;                  
+        }
+    }
+}

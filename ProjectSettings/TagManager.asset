@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - Key
   - Seif
+  - Mask
   layers:
   - Default
   - TransparentFX

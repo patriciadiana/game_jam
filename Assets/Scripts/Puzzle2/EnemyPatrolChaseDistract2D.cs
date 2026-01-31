@@ -123,13 +123,9 @@ public class EnemyPatrolChaseDistract2D : MonoBehaviour
     {
         facing *= -1;
 
-        if (sprite)
-            sprite.flipX = facing < 0;
-
-        // If you prefer flipping the whole transform scale instead:
-        // var s = transform.localScale;
-        // s.x = Mathf.Abs(s.x) * facing;
-        //transform.localScale = s;
+        Vector3 s = transform.localScale;
+        s.x = Mathf.Abs(s.x) * facing;
+        transform.localScale = s;
     }
 
     // ------------------------
@@ -253,6 +249,8 @@ public class EnemyPatrolChaseDistract2D : MonoBehaviour
         if (collision.collider.CompareTag("Player"))
         {
             collision.collider.gameObject.SetActive(false); // “disappear”
+
+            Debug.Log("Am murit");
         }
     }
 

@@ -136,7 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ReturnableProjectile2D
   returnSpeed: 18
   arriveDistance: 0.08
-  GravityScale: 1
+  GravityScale: 1.5
 --- !u!61 &6694979836481746279
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -287,7 +287,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Sprite: {fileID: 1618043999115098930, guid: d4ade1e5293b4554fb933c25edb6e45d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -331,8 +331,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Offset: {x: 0, y: -0.096054316}
+  m_Size: {x: 1, y: 2.3018851}
   m_Direction: 0
 --- !u!50 &2287300036954933006
 Rigidbody2D:
@@ -381,6 +381,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 320
+  startFacingRight: 1
+  flipDeadzone: 0.01
 --- !u!114 &2843616764351900214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,9 +404,9 @@ MonoBehaviour:
   collisionMask:
     serializedVersion: 2
     m_Bits: 0
-  minThrowSpeed: 6
+  minThrowSpeed: 4
   maxThrowSpeed: 18
-  chargeSpeed: 12
+  chargeSpeed: 8
 --- !u!1 &7898162752406632308
 GameObject:
   m_ObjectHideFlags: 0
