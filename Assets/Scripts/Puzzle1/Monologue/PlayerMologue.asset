@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6328d17438d598644baf7be3438d9b32, type: 3}
   m_Name: PlayerMologue
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMonologue
-  npcName: Ionut Nistor
+  npcName: Eu
   npcPortrait: {fileID: 6120914730915384989, guid: 0a6d85e293e196a428347a27c0a8ed57, type: 3}
   dialogueLines:
-  - watafac
-  - m-au aruncat
+  - am avut o zi de sange
+  - inima in mine plange
   autoProgressLines: 0100
   autoProgressDelay: 1.5
   typingSpeed: 0.05
