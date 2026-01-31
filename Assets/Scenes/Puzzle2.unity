@@ -881,7 +881,7 @@ GameObject:
   - component: {fileID: 567119889}
   - component: {fileID: 567119888}
   - component: {fileID: 567119887}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FloatingPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
