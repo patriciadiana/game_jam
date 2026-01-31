@@ -8,7 +8,17 @@ public class SwitchButton2D : MonoBehaviour
     [Header("One Time Use?")]
     public bool onlyOnce = true;
 
+    [Header("Sprite Change")]
+    public Sprite switchedSprite; // assign the pressed version here
+
     private bool activated = false;
+    private SpriteRenderer spriteRenderer;
+
+    void Awake()
+    {
+        // Get the SpriteRenderer on this object
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -26,8 +36,14 @@ public class SwitchButton2D : MonoBehaviour
 
         Debug.Log("Switch Activated!");
 
+        // Activate platform
         if (platformToActivate != null)
             platformToActivate.SetActive(true);
 
+        // Change sprite to switched version
+        if (spriteRenderer != null && switchedSprite != null)
+        {
+            spriteRenderer.sprite = switchedSprite;
+        }
     }
 }

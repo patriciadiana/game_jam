@@ -22,6 +22,7 @@ public class PlayerProjectileController2D : MonoBehaviour
     private bool canShoot = true;
     private float currentThrowSpeed;
     private bool isCharging;
+    private ArmDistraction2D armDistraction;
 
     void Awake()
     {
@@ -37,6 +38,8 @@ public class PlayerProjectileController2D : MonoBehaviour
         {
             projectile.SetHoldPoint(holdPoint);
             projectile.AttachToHoldPoint();
+
+            armDistraction = projectile.GetComponent<ArmDistraction2D>();
         }
     }
 
@@ -68,6 +71,11 @@ public class PlayerProjectileController2D : MonoBehaviour
         if (canShoot && isCharging && Input.GetMouseButtonUp(0))
         {
             Vector2 dir = GetAimDirection();
+
+            // NEW: allow distraction again for this throw
+            if (armDistraction != null)
+                armDistraction.ResetForNewThrow();
+
             projectile.Shoot(dir * currentThrowSpeed);
 
             isCharging = false;
@@ -85,6 +93,9 @@ public class PlayerProjectileController2D : MonoBehaviour
     private void OnProjectileReturned()
     {
         canShoot = true;
+
+        if (armDistraction != null)
+            armDistraction.ResetOnReturn();
     }
 
     private Vector2 GetAimDirection()
