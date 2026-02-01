@@ -41,7 +41,6 @@ public class ScenesManager : SingletonPersistent<ScenesManager>
         var scene = cutscenes[2];
         foreach (Sprite img in scene.SceneImages)
         {
-            Debug.Log("Image is: " + img.name);
             if (img != null)
             {
                 currentImage.sprite = img;
@@ -59,7 +58,6 @@ public class ScenesManager : SingletonPersistent<ScenesManager>
         var scene = cutscenes[1];
         foreach (Sprite img in scene.SceneImages)
         {
-            Debug.Log("Image is: " + img.name);
             if (img != null)
             {
                 currentImage.sprite = img;
@@ -75,7 +73,6 @@ public class ScenesManager : SingletonPersistent<ScenesManager>
         var scene = cutscenes[0];
         foreach (Sprite img in scene.SceneImages)
         {
-            Debug.Log("Image is: " + img.name);
             if (img != null)
             {
                 currentImage.sprite = img;

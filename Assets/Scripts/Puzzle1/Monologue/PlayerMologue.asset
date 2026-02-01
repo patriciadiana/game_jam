@@ -15,11 +15,11 @@ MonoBehaviour:
   npcName: John
   npcPortrait: {fileID: 6120914730915384989, guid: 0a6d85e293e196a428347a27c0a8ed57, type: 3}
   dialogueLines:
-  - Why did they threw ne away?
-  - Why is the world so changed
+  - Why did they threw me away?
+  - Why is the world so changed?
   - And why do I look like a robot?
   autoProgressLines: 010100
-  autoProgressDelay: 2
+  autoProgressDelay: 1.5
   typingSpeed: 0.05
   voiceSound: {fileID: 0}
   voicePitch: 1
