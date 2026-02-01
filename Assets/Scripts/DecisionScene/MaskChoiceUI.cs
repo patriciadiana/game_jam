@@ -1,5 +1,7 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MaskChoiceUI : MonoBehaviour
 {
@@ -16,6 +18,9 @@ public class MaskChoiceUI : MonoBehaviour
 
     [Header("Main Menu Button")]
     public GameObject mainMenuButton;
+    [SerializeField] private Sprite mask;
+    [SerializeField] private Sprite destory_mask;
+    [SerializeField] private Image background;
 
     void Start()
     {
@@ -29,6 +34,7 @@ public class MaskChoiceUI : MonoBehaviour
     {
         HideChoiceUI();
 
+        background.sprite = mask;
         keepMaskText.SetActive(true);
         mainMenuButton.SetActive(true);
     }
@@ -36,7 +42,7 @@ public class MaskChoiceUI : MonoBehaviour
     public void OnDestroyMaskPressed()
     {
         HideChoiceUI();
-
+        background.sprite = destory_mask;
         destroyMaskText.SetActive(true);
         mainMenuButton.SetActive(true);
     }

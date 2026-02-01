@@ -29,6 +29,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, interactRange);
 
+        var hide = true;
         isNearMask = false;
 
         foreach (Collider2D hit in hits)
@@ -44,9 +45,26 @@ public class PlayerInteraction : MonoBehaviour
 
                 return;
             }
+            else
+            {
+                if (hit.CompareTag("Clues") || hit.CompareTag("Seif"))
+                {
+                    hide = true;
+                    if (objectToShow != null)
+                    {
+                        objectToShow.SetActive(true);
+                    }
+
+                    return;
+                }
+                else
+                {
+                    hide = false;
+                }
+            }
         }
 
-        if (!isNearMask && objectToShow != null)
+        if (!isNearMask && objectToShow != null || hide == false)
         {
             objectToShow.SetActive(false);
         }

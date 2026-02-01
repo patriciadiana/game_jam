@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
     public GameObject optionsMenu;
     public void PlayGame()
     {
-        SceneManager.LoadScene("Puzzle1");
+        SceneManager.LoadScene("Introduction");
     }
     public void QuitGame()
     {
