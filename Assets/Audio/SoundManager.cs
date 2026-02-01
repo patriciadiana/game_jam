@@ -14,7 +14,7 @@ public enum MusicType
 }
 
 [RequireComponent(typeof(AudioSource))]
-public class SoundManager : Singleton<SoundManager>
+public class SoundManager : SingletonPersistent<SoundManager>
 {
     private AudioClip pausedClip;
     private float pausedTime;

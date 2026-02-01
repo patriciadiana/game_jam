@@ -1,12 +1,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameOverScreen : SingletonPersistent<GameOverScreen>
+public class GameOverScreen : MonoBehaviour
 {
     private void Start()
     {
         gameObject.SetActive(false);
+        GameManager.Instance.RegisterGameOverScreen(this);
     }
+
     public void Setup()
     {
         Time.timeScale = 0f;
@@ -16,8 +18,6 @@ public class GameOverScreen : SingletonPersistent<GameOverScreen>
     public void RestartButton()
     {
         Time.timeScale = 1f;
-
-        Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

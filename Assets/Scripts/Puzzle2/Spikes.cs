@@ -12,7 +12,7 @@ public class Spikes : MonoBehaviour
             collision.gameObject.SetActive(false);
             GameManager gm = FindFirstObjectByType<GameManager>();
             if (gm != null)
-                gm.GameLost();
+                gm.GameOver();
             else
                 Debug.Log("miau");
         }
