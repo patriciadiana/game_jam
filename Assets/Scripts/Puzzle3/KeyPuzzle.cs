@@ -55,6 +55,12 @@ public class KeyPuzzle : MonoBehaviour
             string[] text = { "I heard a door opening..." };
             this.GetComponent<Dialogue>().StartDialoguString(text);
         }
+        else
+        {
+            string[] text = { "This is not the code" };
+            this.GetComponent<Dialogue>().StartDialoguString(text);
+
+        }
 
     }
     void OnCollisionStay2D(Collision2D collision)
@@ -83,8 +89,8 @@ public class KeyPuzzle : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     Debug.Log("Here some clues");
-
-                    this.GetComponent<Dialogue>().StartDialoguString(collision.gameObject.GetComponent<Clue>().getText());
+                    string[] text = collision.gameObject.GetComponent<Clue>().getText();
+                    this.GetComponent<Dialogue>().StartDialoguString(text);
 
 
                 }
