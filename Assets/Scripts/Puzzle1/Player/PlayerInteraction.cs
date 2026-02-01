@@ -18,8 +18,6 @@ public class PlayerInteraction : MonoBehaviour
 
         if (isNearMask && Input.GetKeyDown(interactKey))
         {
-            Debug.Log("Bravo frate treci in etapa urmatoare");
-
             int currentIndex = SceneManager.GetActiveScene().buildIndex;
             SceneManager.LoadScene(currentIndex + 1);
         }

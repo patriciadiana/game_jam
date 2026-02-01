@@ -42,9 +42,7 @@ public class KeyPuzzle : MonoBehaviour
         {
             foreach (var op in option)
             {
-                Debug.Log("current code:" + code + " add value " + op.ReturnSelection());
                 code += op.ReturnSelection();
-
             }
         }
         if (key_code == code)
@@ -61,7 +59,7 @@ public class KeyPuzzle : MonoBehaviour
             this.GetComponent<Dialogue>().StartDialoguString(text);
 
         }
-
+        SoundManager.PlaySound(SoundType.BUTTON);
     }
     void OnCollisionStay2D(Collision2D collision)
     {

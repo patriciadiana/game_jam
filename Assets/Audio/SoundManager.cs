@@ -5,7 +5,8 @@ using UnityEngine;
 
 public enum SoundType
 {
-    STEPS
+    MONOLOGUE,
+    BUTTON
 }
 
 public enum MusicType

@@ -36,7 +36,7 @@ public class Selector : MonoBehaviour
 
     public void UpDisplay()
     {
-        Debug.Log("Up");
+        SoundManager.PlaySound(SoundType.BUTTON);
         if (selector.Count != 0)
         {
             if (current_index + 1 < selector.Count)
@@ -60,7 +60,7 @@ public class Selector : MonoBehaviour
     }
     public void DownDisplay()
     {
-
+        SoundManager.PlaySound(SoundType.BUTTON);
         if (selector.Count != 0)
         {
             if (current_index - 1 >= 0)
@@ -73,7 +73,6 @@ public class Selector : MonoBehaviour
                 current_index = selector.Count - 1;
             }
             option.text = selector[current_index].ToString();
-            Debug.Log("down: " + current_index);
         }
 
     }

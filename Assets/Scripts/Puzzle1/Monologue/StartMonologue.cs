@@ -60,6 +60,7 @@ public class StartMonologue : MonoBehaviour
         portraitImage.sprite = dialogueData.npcPortrait;
 
         dialoguePanel.SetActive(true);
+        SoundManager.PlaySound(SoundType.MONOLOGUE);
 
         StartCoroutine(TypeLine());
     }
