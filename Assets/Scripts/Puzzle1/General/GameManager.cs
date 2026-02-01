@@ -1,39 +1,33 @@
 using UnityEngine;
 
-public class GameManager : SingletonPersistent<GameManager>
+public class GameManager : MonoBehaviour
 {
-    public GameOverScreen gameOverScreen;
-    public bool isGameOver { get; private set; } = false;
+    public static GameManager Instance;
 
-    public void GameLost()
+    private GameOverScreen gameOverScreen;
+
+    void Awake()
     {
-        if (isGameOver) return;
-
-        isGameOver = true;
-        Debug.Log("Game Over!");
-
-        // Find GameObject by tag
-        GameObject taggedObject = GameObject.FindGameObjectWithTag("GameOverScreen");
-
-        if (taggedObject != null)
+        if (Instance != null && Instance != this)
         {
-            Debug.Log($"Found GameObject with tag 'GameOverScreen': {taggedObject.name}");
-
-            // Get the GameOverScreen component from it
-            GameOverScreen screen = taggedObject.GetComponent<GameOverScreen>();
-
-            if (screen != null)
-            {
-                screen.Setup();
-            }
-            else
-            {
-                Debug.LogError($"GameObject '{taggedObject.name}' has tag 'GameOverScreen' but no GameOverScreen script component!");
-            }
+            Destroy(gameObject);
+            return;
         }
-        else
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
+    public void RegisterGameOverScreen(GameOverScreen screen)
+    {
+        gameOverScreen = screen;
+    }
+
+    public void GameOver()
+    {
+        if (gameOverScreen != null)
         {
-            Debug.LogError("No GameObject found with tag 'GameOverScreen'!");
+            gameOverScreen.Setup();
         }
     }
 }

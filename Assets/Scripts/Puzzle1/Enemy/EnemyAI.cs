@@ -201,7 +201,7 @@ public class EnemyAI : MonoBehaviour
 
             GameManager gm = FindFirstObjectByType<GameManager>();
             if (gm != null)
-                gm.GameLost();
+                gm.GameOver();
         }
     }
 
