@@ -9,11 +9,20 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
+    path: Assets/Scenes/Introduction.unity
+    guid: 14183ef894229f64ba61f2598bbc088a
+  - enabled: 1
     path: Assets/Scenes/Puzzle1.unity
     guid: 537dbe8b5833480488b84ca34dbf82ba
   - enabled: 1
+    path: Assets/Scenes/CutsceneJunkyard.unity
+    guid: 974e721db677c5e488948a103e489a76
+  - enabled: 1
     path: Assets/Scenes/Puzzle2.unity
     guid: 049b7a584f21cd74b99ebfccd95de379
+  - enabled: 1
+    path: Assets/Scenes/CutSceneCity.unity
+    guid: b3c98acbee2d073489ecc232297c431c
   - enabled: 1
     path: Assets/Scenes/Puzzle3.unity
     guid: d0ac5d1f09500584c93fca5e5418dc6a
