@@ -109,7 +109,7 @@ public class Dialogue : MonoBehaviour
             dialogueText.SetText(text[dialogueIndex]);
             isTyping = false;
         }
-        else if (++dialogueIndex < dialogueData.dialogueLines.Length)
+        else if (++dialogueIndex < text.Length)
         {
             StartCoroutine(TypeLineString(text));
         }
