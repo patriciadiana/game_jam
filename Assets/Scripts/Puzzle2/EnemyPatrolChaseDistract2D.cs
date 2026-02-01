@@ -57,13 +57,25 @@ public class EnemyPatrolChaseDistract2D : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Highest priority: if we are investigating/waiting, ignore chase.
-        // (Feel free to change later if you want chase to override distraction.)
-        if (state == State.Patrol || state == State.Chase)
+        bool seesPlayer = CanSeePlayer();
+
+        if (seesPlayer)
         {
-            bool seesPlayer = CanSeePlayer();
-            if (seesPlayer) state = State.Chase;
-            else if (state == State.Chase) state = State.Patrol;
+            // Player overrides everything
+            state = State.Chase;
+
+            // Cancel investigation waiting if needed
+            if (waitRoutine != null)
+            {
+                StopCoroutine(waitRoutine);
+                waitRoutine = null;
+            }
+        }
+        else
+        {
+            // If we lost sight during chase, go back to patrol
+            if (state == State.Chase)
+                state = State.Patrol;
         }
 
         switch (state)
@@ -191,6 +203,11 @@ public class EnemyPatrolChaseDistract2D : MonoBehaviour
     // ------------------------
     public void DistractTo(Vector2 worldPosition)
     {
+        if (CanSeePlayer())
+            return;
+
+        if (state == State.Chase)
+            return;
         // Cancel any waiting coroutine
         if (waitRoutine != null)
         {
