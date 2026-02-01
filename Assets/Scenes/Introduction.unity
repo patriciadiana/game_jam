@@ -422,9 +422,8 @@ MonoBehaviour:
   - speed: 2
     SceneName: City
     SceneImages:
-    - {fileID: -4423168263727153013, guid: 265682a7f19e1c640b5eaed745e0b46f, type: 3}
-    - {fileID: 2874899841556093376, guid: 265682a7f19e1c640b5eaed745e0b46f, type: 3}
-    - {fileID: -663914192530200109, guid: 265682a7f19e1c640b5eaed745e0b46f, type: 3}
+    - {fileID: 1736804804041353084, guid: 265682a7f19e1c640b5eaed745e0b46f, type: 3}
+    - {fileID: -7250459454540958168, guid: 265682a7f19e1c640b5eaed745e0b46f, type: 3}
   sceneNames:
   - Puzzle1
   - Puzzle2

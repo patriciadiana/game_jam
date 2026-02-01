@@ -398,7 +398,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4408086363710051764, guid: a8ea165b15822bd4fa0219673e4776d4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.46
+      value: -13.76
       objectReference: {fileID: 0}
     - target: {fileID: 4408086363710051764, guid: a8ea165b15822bd4fa0219673e4776d4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -441,12 +441,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 226987089}
     - target: {fileID: 8356253888304519324, guid: a8ea165b15822bd4fa0219673e4776d4, type: 3}
-      propertyPath: patrolWidth
-      value: 4.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 8356253888304519324, guid: a8ea165b15822bd4fa0219673e4776d4, type: 3}
       propertyPath: patrolHeight
-      value: 1.76
+      value: 1.95
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -643,7 +639,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.8116, y: 0}
+  m_AnchoredPosition: {x: -1.8115845, y: 0}
   m_SizeDelta: {x: 70, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &197080337

@@ -95,8 +95,16 @@ public class KeyPuzzle : MonoBehaviour
             }
         }
     }
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Seif"))
+        {
 
 
+
+            seif_close_up_panel.SetActive(false);
+        }
+    }
     private void UnlockDoor()
     {
         if (door != null)
