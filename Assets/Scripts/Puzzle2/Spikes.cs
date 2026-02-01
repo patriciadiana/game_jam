@@ -7,14 +7,10 @@ public class Spikes : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("am murit");
-
             collision.gameObject.SetActive(false);
             GameManager gm = FindFirstObjectByType<GameManager>();
             if (gm != null)
                 gm.GameOver();
-            else
-                Debug.Log("miau");
         }
     }
 }
